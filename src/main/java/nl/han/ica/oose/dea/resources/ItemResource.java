@@ -1,5 +1,7 @@
 package nl.han.ica.oose.dea.resources;
 
+import jakarta.inject.Inject;
+import nl.han.ica.oose.dea.services.HardCodedItemService;
 import nl.han.ica.oose.dea.services.ItemService;
 import nl.han.ica.oose.dea.services.dto.ItemDTO;
 
@@ -11,11 +13,19 @@ import jakarta.ws.rs.core.UriBuilder;
 @Path("/items")
 public class ItemResource {
 
+
     private ItemService itemService;
 
-    public ItemResource() {
-        this.itemService = new ItemService();
+    @Inject
+    public void setItemService(ItemService itemService) {
+        this.itemService = itemService;
     }
+
+//    public ItemResource(ItemService itemService) {
+//        this.itemService = itemService;
+//    }
+
+
 
     @GET
     @Produces(MediaType.TEXT_PLAIN)
